@@ -12,12 +12,10 @@
                :runsteps ""})
 (def credentials ["arulprakash_pugazhendi" "aug-2017"])
 (def headers {"Accept-Encoding" "gzip,deflate"
-              "Content-Type" "application/soap+xml;charset=UTF-8"
-              "SOAPaction" ""
               "Host" "alm.farmersinsurance.com:8080"
               "Connection" "Keep-Alive"
               "User-Agent" "Apache-HttpClient/4.1.1 (java 1.5)"
-              "Cookie" (str  "JSESSIONID" (str (java.util.UUID/randomUUID))
+              "Cookie" (str  "JSESSIONID" (str (java.util.UUID/randomUUID)))
               "Cookie2" "$Version=1"})
 (defn -main
   "I don't do a whole lot ... yet."
@@ -36,9 +34,11 @@
 
 (defn get-sso-cookie
   []
-  (let [response (client/post (str server (:auth resource))
-                 {:basic-auth credentials
-                  :headers headers})]
+  (let [response (client/get (str server (:auth resource))
+                             {:proxy-host "10.132.40.23"
+                              :proxy-port 80
+                              :basic-auth credentials
+                              :headers headers})]
     (println response)))
 
 (defn get-session-cookie

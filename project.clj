@@ -8,6 +8,7 @@
                  [org.clojure/test.check "0.9.0"]
                  [org.clojure/data.xml "0.0.8"]
                  [clj-http "3.7.0"]
+                 [enlive "1.1.6"]
                  ]
   :main ^:skip-aot alm.core
   :target-path "target/%s"

@@ -1,0 +1,16 @@
+   <Entity Type="run-step">
+      <ChildrenCount>
+         <Value>0</Value>
+      </ChildrenCount>
+      <Fields>
+         <Field Name="desstep-id">
+            <Value>270</Value>
+         </Field>
+         <Field Name="status">
+            <Value>Passed</Value>
+         </Field>      
+         <Field Name="actual">
+            <Value>"Test Passed</Value>
+         </Field>
+      </Fields>
+   </Entity>

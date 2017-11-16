@@ -1,0 +1,21 @@
+<Entity Type="run">
+   <ChildrenCount>
+      <Value>0</Value>
+   </ChildrenCount>
+   <Fields>    
+      <Field Name="name">
+         <Value>Test</Value>
+      </Field>
+      <Field Name="testcycl-id">
+         <Value>14</Value>
+      </Field>
+      <Field Name="test-id">
+         <Value>11</Value>
+      </Field>
+      <Field Name="owner">
+         <Value>arulprakash_pugazhendi</Value>
+      </Field>
+      <Field Name="subtype-id"><Value>hp.qc.run.MANUAL</Value></Field>
+   </Fields>
+   <RelatedEntities/>
+</Entity>

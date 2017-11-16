@@ -1,0 +1,133 @@
+<Entity Type="run">
+   <ChildrenCount>
+      <Value>0</Value>
+   </ChildrenCount>
+   <Fields>
+      <Field Name="test-instance">
+         <Value>14</Value>
+      </Field>
+      <Field Name="execution-date">
+         <Value>2017-10-24</Value>
+      </Field>
+      <Field Name="state">
+         <Value/>
+      </Field>
+      <Field Name="id">
+         <Value>27</Value>
+      </Field>
+      <Field Name="ver-stamp">
+         <Value>3</Value>
+      </Field>
+      <Field Name="os-config">
+         <Value/>
+      </Field>
+      <Field Name="test-config-id">
+         <Value>1011</Value>
+      </Field>
+      <Field Name="name">
+         <Value>MCo 22 HSCM Test</Value>
+      </Field>
+      <Field Name="has-linkage">
+         <Value>N</Value>
+      </Field>
+      <Field Name="path">
+         <Value/>
+      </Field>
+      <Field Name="vc-status">
+         <Value/>
+      </Field>
+      <Field Name="pinned-baseline">
+         <Value/>
+      </Field>
+      <Field Name="vc-version-number"/>
+      <Field Name="test-description">
+         <Value/>
+      </Field>
+      <Field Name="cycle-name">
+         <Value>ACE Testing</Value>
+      </Field>
+      <Field Name="os-build">
+         <Value>Build 7601</Value>
+      </Field>
+      <Field Name="testcycl-id">
+         <Value>27</Value>
+      </Field>
+      <Field Name="cycle-id">
+         <Value>201</Value>
+      </Field>
+      <Field Name="cycle">
+         <Value/>
+      </Field>
+      <Field Name="host">
+         <Value>ZURXNACDC374</Value>
+      </Field>
+      <Field Name="assign-rcyc">
+         <Value/>
+      </Field>
+      <Field Name="last-modified">
+         <Value>2017-10-24 23:37:28</Value>
+      </Field>
+      <Field Name="status">
+         <Value>Failed</Value>
+      </Field>
+      <Field Name="os-name">
+         <Value>Windows Server 2008 R2</Value>
+      </Field>
+      <Field Name="attachment">
+         <Value/>
+      </Field>
+      <Field Name="iters-params-values">
+         <Value/>
+      </Field>
+      <Field Name="test-name">
+         <Value>TC02_ACE_Testing Process</Value>
+      </Field>
+      <Field Name="test-id">
+         <Value>11</Value>
+      </Field>
+      <Field Name="subtype-id">
+         <Value>hp.qc.run.MANUAL</Value>
+      </Field>
+      <Field Name="draft">
+         <Value>N</Value>
+      </Field>
+      <Field Name="iters-sum-status">
+         <Value/>
+      </Field>
+      <Field Name="duration">
+         <Value>350</Value>
+      </Field>
+      <Field Name="bpt-structure">
+         <Value/>
+      </Field>
+      <Field Name="environment">
+         <Value/>
+      </Field>
+      <Field Name="owner">
+         <Value>arulprakash_pugazhendi</Value>
+      </Field>
+      <Field Name="text-sync">
+         <Value/>
+      </Field>
+      <Field Name="bpta-change-detected"/>
+      <Field Name="testcycl-name">
+         <Value>TC02_ACE_Testing Process [14]</Value>
+      </Field>
+      <Field Name="execution-time">
+         <Value>23:37:28</Value>
+      </Field>
+      <Field Name="bpta-change-awareness">
+         <Value/>
+      </Field>
+      <Field Name="vc-locked-by">
+         <Value/>
+      </Field>
+      <Field Name="comments">
+         <Value/>
+      </Field>
+      <Field Name="os-sp">
+         <Value>Service Pack 1</Value>
+      </Field>
+   </Fields>
+   <RelatedEntities/>
+</Entity>

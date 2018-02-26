@@ -1,0 +1,84 @@
+(ns alm.ace
+  (:require [alm.common :refer :all]
+            [clojure.data.xml :refer :all]
+            [alm.steps :refer :all]
+            [net.cgrand.enlive-html :as html]
+            [clj-http.client :as client]
+            [dk.ative.docjure.spreadsheet :refer :all]))
+
+(defn read-projects
+  []
+  (->> (load-workbook "projectnames.xlsx")
+       (select-sheet "Sheet5")
+       (select-columns {:A :job, :B :project, :C :infile, :D :outfile})))
+
+
+(defn prepare-test-instance
+  "201 - ACE
+  1104 - Guidewire"
+  [cycle-id]
+  (let [body (emit-str (sexp-as-element
+                        [:Entity {:Type "test-instance"}
+                         [:ChildrenCount 0]
+                         [:Fields
+                          [:Field {:Name "cycle-id"} [:Value cycle-id]]
+                          [:Field {:Name "test-id"} [:Value 11]]
+                          [:Field {:Name "subtype-id"} [:Value "hp.qc.test-instance.MANUAL"]]]]))
+        url (str server (:instances resource))]
+    (crud-response client/post url body)))
+
+(defn create-run
+  [name test-instance]
+  (let [body (emit-str (sexp-as-element
+                        [:Entity {:Type "run"}
+                         [:ChildrenCount 0]
+                         [:Fields
+                          [:Field {:Name "name"} [:Value name]]
+                          [:Field {:Name "testcycl-id"} [:Value test-instance]]
+                          [:Field {:Name "test-id"} [:Value 11]]
+                          [:Field {:Name "cycle-id"} [:Value 201]]
+                          [:Field {:Name "duration"} [:Value 350]]
+                          [:Field {:Name "owner"} [:Value "arulprakash_pugazhendi"]]
+                          [:Field {:Name "subtype-id"} [:Value "hp.qc.run.MANUAL"]]
+                          [:Field {:Name "status"} [:Value "Passed"]]]]))
+        url (str server (:runs resource))]
+    (crud-response client/post url body)))
+
+(defn update-run-step
+  [url body]
+  (:status (crud client/put url
+                 {:proxy-host "10.148.0.180"
+                  :proxy-port 80
+                  :basic-auth credentials
+                  :headers    (merge headers {"Cookie"       session-cookie
+                                              "Content-Type" "application/xml"})
+                  :body       body})))
+
+(defn prepare-steps
+  [runid stepid infile outfile]
+  (let [actuals (into (sorted-map) (merge st {272 (str "Input file " infile " has records")
+                                              275 (str "Input file occurrances are changed to " infile)
+                                              280 (str "File " outfile " available in ZFILE_UTIL")}))]
+    (map (fn [id m]
+           (crud client/put 
+                 (str server (:runs resource) "/" runid "/run-steps/" id)
+                 (emit-str (sexp-as-element
+                            [:Entity {:Type "run-step"}
+                             [:ChildrenCount 0]
+                             [:Fields
+                              [:Field {:Name "desstep-id"} [:Value (first m)]]
+                              [:Field {:Name "status"} [:Value "Passed"]]
+                              [:Field {:Name "actual"} [:Value (second m)]]]])))) (range (Integer. stepid) (+ (Integer. stepid) 20)) actuals)))
+
+(defn run-job
+  [p i]
+  (let [test-instance i 
+        name (str (:project p) "-" (:job p) "-" (:infile p))
+        runid (get-id (create-run name test-instance) "id")
+        stepsurl (str server (:runs resource) "/" runid "/run-steps")
+        stepid (get-id (get-resource stepsurl) "id")
+        infile (:infile p)
+        outfile (:outfile p)]
+    (prepare-steps runid stepid infile outfile)))
+
+                                        ;(map #(run-job %1 %2) (read-excel) (range 419 424))
